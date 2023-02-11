@@ -40,7 +40,7 @@ public class UserService {
     public Optional<User> Get_User(String us){
 
 
-       return  userRepository.findUserByName(us) ;
+       return  userRepository.findByName(us) ;
 
     }
 }

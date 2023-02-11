@@ -17,10 +17,15 @@ public class UserController {
     private UserService service;
 
 
+    @GetMapping("/welcome")
+    public String Welcome() {
 
 
-    @PostMapping("/save")
-    @ResponseBody
+        return "Welcome this endpoint is not secure ";
+
+    }
+
+    @PostMapping("/add")
     public String save_details(@RequestBody User user) {
 
         service.save_user(user);
@@ -28,8 +33,8 @@ public class UserController {
 
     }
 
-    @GetMapping("/get")
-//    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/getall")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<User> get_User() {
         return service.get_all_user();
     }
@@ -37,7 +42,7 @@ public class UserController {
 
 
     @GetMapping("/{name}")
-    @ResponseBody
+    @PreAuthorize("hasAuthority('USER')")
     public Optional<User> get_user(@PathVariable String name) {
         return service.Get_User(name);
     }

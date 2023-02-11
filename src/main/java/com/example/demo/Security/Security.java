@@ -49,11 +49,12 @@ public class Security {
 
         return http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/save","/{name}").permitAll()
+                .requestMatchers("/save","/welcome").permitAll()
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/get").hasRole("ADMIN")
+                .requestMatchers("/getall").authenticated()
                 .and()
+
                 .formLogin()
                 .and().build() ;
    }
